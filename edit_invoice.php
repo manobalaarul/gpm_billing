@@ -11,10 +11,11 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
   <title>Edit Invoice</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script>
-  function addRow(description = "", rate = "", qty = "", amount = "") {
+  function addRow(title = "", description = "", rate = "", qty = "", amount = "") {
     const table = document.getElementById("products");
     const row = table.insertRow();
     row.innerHTML = `
+      <td><input type="text" name="title[]" class="form-control" value="${title}" required></td>
       <td><input type="text" name="description[]" class="form-control" value="${description}" required></td>
       <td><input type="number" name="rate[]" class="form-control" step="0.01" value="${rate}" oninput="calcAmount(this)" required></td>
       <td><input type="number" name="qty[]" class="form-control" value="${qty}" oninput="calcAmount(this)" required></td>
@@ -97,7 +98,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
         <?php while ($row = mysqli_fetch_assoc($items)) { ?>
           <script>
             window.addEventListener('DOMContentLoaded', () => {
-              addRow(`<?= addslashes($row['description']) ?>`, `<?= $row['rate'] ?>`, `<?= $row['quantity'] ?>`, `<?= $row['amount'] ?>`);
+              addRow(`<?= $row['title'] ?>`,`<?= addslashes($row['description']) ?>`, `<?= $row['rate'] ?>`, `<?= $row['quantity'] ?>`, `<?= $row['amount'] ?>`);
             });
           </script>
         <?php } ?>

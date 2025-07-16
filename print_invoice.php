@@ -152,6 +152,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
     <table>
       <thead>
         <tr>
+          <th>Title</th>
           <th>Description</th>
           <th>Rate</th>
           <th>Qty</th>
@@ -161,6 +162,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
       <tbody>
         <?php while ($row = mysqli_fetch_assoc($items)): ?>
           <tr>
+            <td><?= nl2br($row['title']) ?></td>
             <td><?= nl2br($row['description']) ?></td>
             <td>₹<?= number_format($row['rate'], 2) ?></td>
             <td><?= $row['quantity'] ?></td>
