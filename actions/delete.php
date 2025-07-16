@@ -14,7 +14,7 @@ if (isset($_GET['invoice_number'])) {
         // 3. Delete invoice
         mysqli_query($conn, "DELETE FROM invoices WHERE invoice_number = '$invoice_number'");
 
-        header("Location: index.php");
+        header("Location: ../index.php");
 
     } else {
         echo "Invoice not found.";

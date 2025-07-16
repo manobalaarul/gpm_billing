@@ -49,6 +49,6 @@ for ($i = 0; $i < count($descriptions); $i++) {
 }
 
 // ✅ Redirect back to invoice list or view page
-header("Location: index.php?updated=1");
+header("Location: ../index.php?updated=1");
 exit;
 ?>

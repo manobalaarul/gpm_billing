@@ -1,8 +1,10 @@
-<?php include 'db.php'; ?>
+<?php include 'actions/db.php'; ?>
 <!DOCTYPE html>
 <html>
 
 <head>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PHP Billing System</title>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,10 +61,13 @@
 </head>
 
 <body>
+    <div class="d-flex">
+  <?php include 'includes/sidebar.php'; ?>
+
     <div class="container my-4">
         <h2 class="mb-4">Invoice Billing Page</h2>
 
-        <form method="POST" action="submit.php">
+        <form method="POST" action="actions/submit.php">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label class="form-label">Customer Name</label>
@@ -120,7 +125,7 @@
             <button type="submit" class="btn btn-primary">Submit Invoice</button>
         </form>
     </div>
-
+    </div>
     <!-- Bootstrap JS Bundle (optional for features like dropdowns) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'actions/db.php';
 $id = $_GET['invoice_number'];
 date_default_timezone_set("Asia/Calcutta");   
 $invoice = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM invoices WHERE invoice_number = '$id'"));
@@ -10,6 +10,8 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GPM PROPERTIES - Invoice <?= "GPM" . str_pad($id, 8, '0', STR_PAD_LEFT) ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 

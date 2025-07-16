@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'actions/db.php';
 $id = $_GET['invoice_number'];
 $invoice = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM invoices WHERE invoice_number = '$id'"));
 $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$id'");
@@ -8,6 +8,8 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 <!DOCTYPE html>
 <html>
 <head>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edit Invoice</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script>
@@ -61,9 +63,13 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 </script>
 
 </head>
-<body class="container mt-5">
+<body>
+      <div class="d-flex">
+  <?php include 'includes/sidebar.php'; ?>
+
+    <div class="container my-4">
   <h2>Edit Invoice</h2>
-  <form method="POST" action="update_invoice.php">
+  <form method="POST" action="actions/update_invoice.php">
     <input type="hidden" name="invoice_id" value="<?= $id ?>">
 
     <div class="mb-3">
@@ -123,5 +129,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 
     <button type="submit" class="btn btn-primary mt-4">Update Invoice</button>
   </form>
+    </div>
+      </div>
 </body>
 </html>

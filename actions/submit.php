@@ -45,6 +45,6 @@ for ($i = 0; $i < count($descriptions); $i++) {
 }
 
 // ✅ Redirect to print view
-header("Location: print_invoice.php?invoice_number=$invoice_number");
+header("Location: ../print_invoice.php?invoice_number=$invoice_number");
 exit;
 ?>
