@@ -1,4 +1,7 @@
-<?php include 'actions/db.php'; ?>
+<?php 
+include 'actions/auth.php'; // 🔒 Restrict access
+include 'actions/db.php';
+?>
 <!DOCTYPE html>
 <html>
 

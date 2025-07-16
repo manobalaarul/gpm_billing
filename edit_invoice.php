@@ -1,5 +1,7 @@
-<?php
+<?php 
+include 'actions/auth.php'; // 🔒 Restrict access
 include 'actions/db.php';
+
 $id = $_GET['invoice_number'];
 $invoice = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM invoices WHERE invoice_number = '$id'"));
 $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$id'");

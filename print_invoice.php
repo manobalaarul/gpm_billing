@@ -30,7 +30,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
       display: flex;
       justify-content: space-between;
       font-size: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       color: #333;
     }
     .invoice-header {
@@ -81,6 +81,9 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
     th {
       background: #f3f3f3;
     }
+    .logo_img{
+      margin-top:70px;
+    }
     .total-summary {
       margin-top: 20px;
       text-align: right;
@@ -118,7 +121,6 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 
     <div class="invoice-header">
       <div class="logo-left">
-        <img src="gpmlogo.png" alt="Company Logo">
         <div class="company-info">
           <strong>GPM PROPERTIES</strong><br>
           <b>Business Number</b><br>
@@ -131,7 +133,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
           info@gpmproperties.in
         </div>
       </div>
-
+        <img src="gpmlogo.png" class="logo_img" alt="Company Logo" width="400">
       <div class="invoice-details">
         <b>Invoice No</b>
         <?= "GPM" . str_pad($id, 8, '0', STR_PAD_LEFT) ?>

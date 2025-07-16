@@ -1,4 +1,7 @@
-<?php include 'actions/db.php'; ?>
+<?php 
+include 'actions/auth.php'; // 🔒 Restrict access
+include 'actions/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +82,7 @@ function confirmDelete(invoiceNumber) {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      window.location.href = 'delete.php?invoice_number=' + invoiceNumber;
+      window.location.href = 'actions/delete.php?invoice_number=' + invoiceNumber;
     }
   });
 }

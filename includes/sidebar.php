@@ -15,6 +15,11 @@
         ➕ Add Invoice
       </a>
     </li>
+    <li>
+      <a href="actions/logout.php" class="nav-link text-white">
+        ⏳ Logout
+      </a>
+    </li>
   </ul>
   <hr>
   <div class="text-white-50">
