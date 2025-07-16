@@ -40,11 +40,11 @@ for ($i = 0; $i < count($descriptions); $i++) {
     $amount = $amounts[$i];
 
     $sql_item = "INSERT INTO invoice_items (invoice_id, title, description, rate, quantity, amount,realtime)
-    VALUES ('$invoice_id', '$ti', '$desc', '$rate', '$qty', '$amount',CURRENT_TIMESTAMP())";
+    VALUES ('$invoice_number', '$ti', '$desc', '$rate', '$qty', '$amount',CURRENT_TIMESTAMP())";
     mysqli_query($conn, $sql_item);
 }
 
 // ✅ Redirect to print view
-header("Location: print_invoice.php?id=$invoice_id");
+header("Location: print_invoice.php?invoice_number=$invoice_number");
 exit;
 ?>

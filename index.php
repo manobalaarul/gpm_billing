@@ -34,7 +34,8 @@
           echo "<td>" . $row['customer_name'] . "</td>";
           echo "<td>" . date("d/m/y, h:i A", strtotime($row['realtime'])) . "</td>";
           echo "<td>₹" . number_format($row['total_amount'], 2) . "</td>";
-          echo "<td><a href='print_invoice.php?id=" . $row['id'] . "' target='_blank' class='btn btn-sm btn-primary'>View</a></td>";
+          echo "<td><a href='print_invoice.php?invoice_number=" . $row['invoice_number'] . "' target='_blank' class='btn btn-sm btn-primary'>View</a></td>";
+          echo "<td><a href='edit_invoice.php?invoice_number=" . $row['invoice_number'] . "' target='_blank' class='btn btn-sm btn-primary'>Edit</a></td>";
           echo "</tr>";
         }
         ?>

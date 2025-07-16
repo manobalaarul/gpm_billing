@@ -1,9 +1,9 @@
 <?php
 include 'db.php';
-$id = $_GET['id'];
+$id = $_GET['invoice_number'];
 date_default_timezone_set("Asia/Calcutta");   
-$invoice = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM invoices WHERE id = $id"));
-$items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = $id");
+$invoice = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM invoices WHERE invoice_number = '$id'"));
+$items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$id'");
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,6 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = $id
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
       padding: 40px;
     }
     .invoice-box {
