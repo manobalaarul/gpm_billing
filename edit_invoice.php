@@ -1,6 +1,6 @@
 <?php
 include 'db.php';
-$id = intval($_GET['invoice_number']);
+$id = $_GET['invoice_number'];
 $invoice = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM invoices WHERE invoice_number = '$id'"));
 $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$id'");
 ?>
@@ -11,41 +11,54 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
   <title>Edit Invoice</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script>
-    function addRow(description = "", rate = "", qty = "", amount = "") {
-      const table = document.getElementById("products");
-      const row = table.insertRow();
-      row.innerHTML = `
-        <td><input type="text" name="description[]" class="form-control" value="${description}" required></td>
-        <td><input type="number" name="rate[]" class="form-control" step="0.01" value="${rate}" oninput="calcAmount(this)" required></td>
-        <td><input type="number" name="qty[]" class="form-control" value="${qty}" oninput="calcAmount(this)" required></td>
-        <td><input type="number" name="amount[]" class="form-control" value="${amount}" readonly></td>
-        <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-sm">❌</button></td>
-      `;
-    }
+  function addRow(description = "", rate = "", qty = "", amount = "") {
+    const table = document.getElementById("products");
+    const row = table.insertRow();
+    row.innerHTML = `
+      <td><input type="text" name="description[]" class="form-control" value="${description}" required></td>
+      <td><input type="number" name="rate[]" class="form-control" step="0.01" value="${rate}" oninput="calcAmount(this)" required></td>
+      <td><input type="number" name="qty[]" class="form-control" value="${qty}" oninput="calcAmount(this)" required></td>
+      <td><input type="number" name="amount[]" class="form-control" value="${amount}" readonly></td>
+      <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-sm">❌</button></td>
+    `;
+    calcTotal();
+  }
 
-    function removeRow(btn) {
-      btn.closest("tr").remove();
-    }
+  function removeRow(btn) {
+    btn.closest("tr").remove();
+    calcTotal();
+  }
 
-    function calcAmount(input) {
-      const row = input.closest("tr");
-      const rate = parseFloat(row.querySelector('input[name="rate[]"]').value) || 0;
-      const qty = parseFloat(row.querySelector('input[name="qty[]"]').value) || 0;
-      row.querySelector('input[name="amount[]"]').value = (rate * qty).toFixed(2);
-    }
+  function calcAmount(input) {
+    const row = input.closest("tr");
+    const rate = parseFloat(row.querySelector('input[name="rate[]"]').value) || 0;
+    const qty = parseFloat(row.querySelector('input[name="qty[]"]').value) || 0;
+    row.querySelector('input[name="amount[]"]').value = (rate * qty).toFixed(2);
+    calcTotal();
+  }
 
-    function calcTotal() {
-      let total = 0;
-      document.querySelectorAll('input[name="amount[]"]').forEach(item => {
-        total += parseFloat(item.value) || 0;
-      });
-      document.getElementById("total_amount").value = total.toFixed(2);
-    }
+  function calcTotal() {
+    let total = 0;
+    document.querySelectorAll('input[name="amount[]"]').forEach(item => {
+      total += parseFloat(item.value) || 0;
+    });
+    document.getElementById("total_amount").value = total.toFixed(2);
 
-    window.onload = function () {
-      calcTotal();
-    }
-  </script>
+    const paid = parseFloat(document.getElementById("paid_amount").value) || 0;
+    document.getElementById("balance_amount").value = (total - paid).toFixed(2);
+  }
+
+  // Recalculate balance when paid amount changes
+  function attachPaidEvent() {
+    document.getElementById("paid_amount").addEventListener("input", calcTotal);
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    attachPaidEvent();
+    calcTotal();
+  });
+</script>
+
 </head>
 <body class="container mt-5">
   <h2>Edit Invoice</h2>
@@ -99,11 +112,11 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
       </div>
       <div class="col-md-4">
         <label>Paid Amount</label>
-        <input type="number" name="paid_amount" class="form-control" value="<?= $invoice['paid_amount'] ?>" step="0.01" required>
+        <input type="number" name="paid_amount" id="paid_amount" class="form-control" value="<?= $invoice['paid_amount'] ?>" step="0.01" required>
       </div>
       <div class="col-md-4">
         <label>Balance Amount</label>
-        <input type="number" name="balance_amount" class="form-control" value="<?= $invoice['balance_amount'] ?>" step="0.01" required>
+        <input type="number" name="balance_amount" id="balance_amount" class="form-control" value="<?= $invoice['balance_amount'] ?>" step="0.01" required>
       </div>
     </div>
 

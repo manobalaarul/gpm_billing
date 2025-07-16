@@ -20,14 +20,14 @@ $update_sql = "UPDATE invoices SET
     total_amount = '$total_amount',
     paid_amount = '$paid_amount',
     balance_amount = '$balance_amount'
-    WHERE id = $invoice_id";
+    WHERE invoice_number = '$invoice_id'";
 
 if (!mysqli_query($conn, $update_sql)) {
     die("Invoice update failed: " . mysqli_error($conn));
 }
 
 // Step 2: Delete old items
-mysqli_query($conn, "DELETE FROM invoice_items WHERE invoice_id = $invoice_id");
+mysqli_query($conn, "DELETE FROM invoice_items WHERE invoice_id = '$invoice_id'");
 
 // Step 3: Insert updated items
 $descriptions = $_POST['description'];
@@ -42,7 +42,7 @@ for ($i = 0; $i < count($descriptions); $i++) {
     $amount = floatval($amounts[$i]);
 
     $sql_item = "INSERT INTO invoice_items (invoice_id, description, rate, quantity, amount)
-                 VALUES ($invoice_id, '$desc', $rate, $qty, $amount)";
+                 VALUES ('$invoice_id', '$desc', $rate, $qty, $amount)";
     mysqli_query($conn, $sql_item);
 }
 

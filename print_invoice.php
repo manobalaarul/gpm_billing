@@ -11,6 +11,8 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 <head>
   <meta charset="UTF-8">
   <title>GPM PROPERTIES - Invoice <?= "GPM" . str_pad($id, 8, '0', STR_PAD_LEFT) ?></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -173,6 +175,9 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
       Payment: -₹<?= number_format($invoice['paid_amount'], 2) ?><br>
       Balance Due: ₹<?= number_format($invoice['balance_amount'], 2) ?>
     </div>
+  </div>
+  <div class="text-center">
+  <a href="index.php" class="btn btn-primary">Home</a>
   </div>
 </body>
 </html>
