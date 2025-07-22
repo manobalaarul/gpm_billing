@@ -35,7 +35,7 @@ include 'actions/db.php';
 
     <div class="table-responsive">
       <table class="table table-striped table-bordered" id="inv-data">
-        <thead class="table-light">
+        <thead class="table-light border-black">
           <tr>
             <th>#</th>
             <th>Invoice No</th>
@@ -45,7 +45,7 @@ include 'actions/db.php';
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="border-black">
           <?php
           $result = mysqli_query($conn, "SELECT * FROM invoices ORDER BY id DESC");
           $count = 1;

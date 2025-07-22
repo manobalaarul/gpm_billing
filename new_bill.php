@@ -22,7 +22,7 @@ include 'actions/db.php';
             const row = table.insertRow();
             row.innerHTML = `
       <td><input type="text" name="title[]" class="form-control" required></td>
-      <td><input type="text" name="description[]" class="form-control" required></td>
+      <td><textarea type="text" name="description[]" class="form-control" required></textarea></td>
       <td><input type="number" name="rate[]" step="0.01" class="form-control" oninput="calcAmount(this)" required></td>
       <td><input type="number" name="qty[]" class="form-control" oninput="calcAmount(this)" required></td>
       <td><input type="number" name="amount[]" class="form-control" readonly></td>

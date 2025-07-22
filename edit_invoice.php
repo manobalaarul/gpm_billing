@@ -20,7 +20,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
     const row = table.insertRow();
     row.innerHTML = `
       <td><input type="text" name="title[]" class="form-control" value="${title}" required></td>
-      <td><input type="text" name="description[]" class="form-control" value="${description}" required></td>
+      <td><textarea type="text" name="description[]" class="form-control" required>${description}</textarea></td>
       <td><input type="number" name="rate[]" class="form-control" step="0.01" value="${rate}" oninput="calcAmount(this)" required></td>
       <td><input type="number" name="qty[]" class="form-control" value="${qty}" oninput="calcAmount(this)" required></td>
       <td><input type="number" name="amount[]" class="form-control" value="${amount}" readonly></td>
