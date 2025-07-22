@@ -98,9 +98,9 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
 </head>
 <body>
   <div class="invoice-box">
-    <div class="invoice-top-bar">
-      <div><?= date("d/m/y, h:i A", strtotime($invoice['realtime'])); ?></div>
-      <div>GPM PROPERTIES - Invoice <?= "GPM" . str_pad($id, 8, '0', STR_PAD_LEFT) ?></div>
+    <div class="invoice-top-bar border-bottom border-2 border-black">
+      <div class="mb-2"><?= date("d/m/y, h:i A", strtotime($invoice['realtime'])); ?></div>
+      <div class="mb-2">GPM PROPERTIES - Invoice <?= "GPM" . str_pad($id, 8, '0', STR_PAD_LEFT) ?></div>
     </div>
 
     <div class="invoice-header">
