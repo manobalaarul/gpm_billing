@@ -122,6 +122,10 @@ include 'actions/db.php';
                     <label class="form-label">Balance Amount</label>
                     <input type="number" name="balance_amount" id="balance_amount" step="0.01" class="form-control" readonly>
                 </div>
+                <div class="col-md-12">
+                    <label class="form-label">Additional Notes</label>
+                    <textarea name="additional_notes" id="additional_notes" step="0.01" class="form-control"></textarea>
+                </div>
             </div>
 
 

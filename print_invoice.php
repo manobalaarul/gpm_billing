@@ -160,10 +160,15 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
       </tbody>
     </table>
 
-    <div class="total-summary">
-      TOTAL: ₹<?= number_format($invoice['total_amount'], 2) ?><br>
-      Payment: -₹<?= number_format($invoice['paid_amount'], 2) ?><br>
-      Balance Due: ₹<?= number_format($invoice['balance_amount'], 2) ?>
+    <div class="d-flex justify-content-between">
+      <p>
+        <?= nl2br($invoice['additional_notes']) ?>
+        </p>
+      <div class="total-summary">
+          TOTAL: ₹<?= number_format($invoice['total_amount'], 2) ?><br>
+          Payment: -₹<?= number_format($invoice['paid_amount'], 2) ?><br>
+          Balance Due: ₹<?= number_format($invoice['balance_amount'], 2) ?>
+      </div>
     </div>
   </div>
   <div class="text-center">

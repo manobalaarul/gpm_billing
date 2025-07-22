@@ -127,6 +127,10 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
         <label>Balance Amount</label>
         <input type="number" name="balance_amount" id="balance_amount" class="form-control" value="<?= $invoice['balance_amount'] ?>" step="0.01" required>
       </div>
+      <div class="col-md-12">
+        <label>Additional Notes</label>
+        <textarea name="additional_notes" id="additional_notes" class="form-control" step="0.01"><?= $invoice['balance_amount'] ?></textarea>
+      </div>
     </div>
 
     <button type="submit" class="btn btn-primary mt-4">Update Invoice</button>

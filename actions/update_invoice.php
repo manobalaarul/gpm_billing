@@ -10,6 +10,7 @@ $invoice_date = $_POST['invoice_date'];
 $total_amount = $_POST['total_amount'];
 $paid_amount = $_POST['paid_amount'];
 $balance_amount = $_POST['balance_amount'];
+$additional_notes = $_POST['additional_notes'];
 
 // Step 1: Update invoice
 $update_sql = "UPDATE invoices SET 
@@ -19,7 +20,8 @@ $update_sql = "UPDATE invoices SET
     invoice_date = '$invoice_date',
     total_amount = '$total_amount',
     paid_amount = '$paid_amount',
-    balance_amount = '$balance_amount'
+    balance_amount = '$balance_amount',
+    additional_notes = '$additional_notes'
     WHERE invoice_number = '$invoice_id'";
 
 if (!mysqli_query($conn, $update_sql)) {

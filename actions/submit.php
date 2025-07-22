@@ -8,10 +8,12 @@ $invoice_date = $_POST['invoice_date'];
 $total_amount = $_POST['total_amount'];
 $paid_amount = $_POST['paid_amount'];
 $balance_amount = $_POST['balance_amount'];
+$additional_notes = $_POST['additional_notes'];
+
 
 // Step 1: Insert without invoice_number
-$insert_sql = "INSERT INTO invoices (customer_name, customer_phone, customer_address, invoice_date, total_amount, paid_amount, balance_amount,realtime)
-VALUES ('$customer_name', '$customer_phone', '$customer_address', '$invoice_date', '$total_amount', '$paid_amount', '$balance_amount',CURRENT_TIMESTAMP())";
+$insert_sql = "INSERT INTO invoices (customer_name, customer_phone, customer_address, invoice_date, total_amount, paid_amount, balance_amount,additional_notes,realtime)
+VALUES ('$customer_name', '$customer_phone', '$customer_address', '$invoice_date', '$total_amount', '$paid_amount', '$balance_amount','$additional_notes',CURRENT_TIMESTAMP())";
 mysqli_query($conn, $insert_sql);
 
 // Step 2: Get inserted ID
