@@ -14,7 +14,6 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GPM PROPERTIES - Invoice <?= "GPM" . str_pad($id, 8, '0', STR_PAD_LEFT) ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -65,21 +64,6 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
     }
     .bill-to {
       margin-bottom: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background: #f3f3f3;
     }
     .logo_img{
       margin-top:70px;
@@ -153,8 +137,8 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
       <?= $invoice['customer_phone'] ?>
     </div>
 
-    <table>
-      <thead>
+    <table class="table table-striped table-bordered">
+      <thead class="border-black">
         <tr>
           <th>Title</th>
           <th>Description</th>
@@ -163,7 +147,7 @@ $items = mysqli_query($conn, "SELECT * FROM invoice_items WHERE invoice_id = '$i
           <th>Amount</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="border-black">
         <?php while ($row = mysqli_fetch_assoc($items)): ?>
           <tr>
             <td><?= nl2br($row['title']) ?></td>
